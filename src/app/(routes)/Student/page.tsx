@@ -1,10 +1,13 @@
+import CreateUser from '@/components/CreateUser'
 import Navbar from '@/components/Navbar'
+import StudentProfile from '@/components/StudentProfile'
 import React from 'react'
 
 const page = () => {
   return (
     <div>
-        <Navbar/>
+      <Navbar />
+      <StudentProfile />
     </div>
   )
 }
