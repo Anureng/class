@@ -5,6 +5,11 @@ import React, { useState } from 'react'
 const CreateProduct = () => {
 
     const [nameData, setNameData] = useState('')
+    const [descriptionData, setDescriptionData] = useState('')
+    const [categoryData, setCategoryData] = useState('')
+    const [priceData, setPriceData] = useState('')
+    const [imageData, setImageData] = useState('')
+    const [videoData, setVideoData] = useState('')
 
     const addData = async () => {
         try {
@@ -20,8 +25,8 @@ const CreateProduct = () => {
     return (
         <div>
             <input type="text" value={nameData} onChange={(e) => setNameData(e.target.value)} placeholder='enter name' />
-            <input type="text" placeholder='enter description' />
-            <input type="text" placeholder='enter ' />
+            <input type="text" placeholder='enter description' value={descriptionData} onChange={(e) => setDescriptionData(e.target.value)} />
+            <input type="text" placeholder='enter ' value={categoryData} onChange={(e) => setCategoryData(e.target.value)} />
             <input type="text" placeholder='price' />
             <input type="text" placeholder='images' />
             <input type="text" placeholder='videos' />
