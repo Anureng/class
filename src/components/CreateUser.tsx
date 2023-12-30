@@ -95,7 +95,7 @@ const CreateUser = () => {
           </CardContent>
           <CardFooter className="flex justify-between">
             {/* <Button >Cancel</Button> */}
-            <Button className='rounded-xl   border bg-black text-white border-gray-300 shadow-lg' variant="outline" onClick={handleClickData}>click button</Button>
+            <Button className='rounded-xl   border bg-black text-white border-gray-300 shadow-lg' onClick={handleClickData}>click button</Button>
           </CardFooter>
           <ToastContainer />
         </Card>

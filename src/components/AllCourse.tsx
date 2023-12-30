@@ -48,6 +48,8 @@ const AllCourse = () => {
         try {
             const contract = await createContractObject()
             const data = await contract.allGetPlaylist()
+            console.log(data.Object);
+
             // data.map(async (el: any) => {
             // for (let i = 0; i < el.length(); i++) {
             //     console.log(i);

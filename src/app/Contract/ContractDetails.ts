@@ -10,7 +10,7 @@ declare global {
 // create a function that initializes the contract object
 export async function createContractObject() {
   // get the provider and signer
-  const provider = new ethers.providers.Web3Provider(window.ethereum)
+  const provider = new ethers.BrowserProvider(window.ethereum)
   const signer = await provider.getSigner()
 
   // create the contract object using the ABI and contract address
