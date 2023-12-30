@@ -14,8 +14,9 @@ const Navbar = () => {
     try {
       const contract = await createContractObject()
       const data = await contract.getUser()
-      // console.log(data[2]._hex);
-      setLoginData(Number(data[2]._hex))
+      console.log(Number(data[2]));
+      setLoginData(Number(data[2]))
+
     } catch (error) {
       toast.error(`Error ${error}`)
     }

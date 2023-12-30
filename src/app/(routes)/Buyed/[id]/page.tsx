@@ -1,4 +1,5 @@
 import BuyedProduct from '@/components/BuyedProduct'
+import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar'
 import React from 'react'
 
@@ -11,6 +12,7 @@ const page = ({ params }: { params: IParams }) => {
         <div>
             <Navbar />
             <BuyedProduct param={params.id} />
+            <Footer />
         </div>
     )
 }

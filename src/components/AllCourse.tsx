@@ -22,6 +22,7 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 import Link from 'next/link'
+import { DollarSign } from 'lucide-react'
 
 const AllCourse = () => {
     const [loginData, setLoginData] = useState<any[]>([])
@@ -48,7 +49,6 @@ const AllCourse = () => {
         try {
             const contract = await createContractObject()
             const data = await contract.allGetPlaylist()
-            console.log(data.Object);
 
             // data.map(async (el: any) => {
             // for (let i = 0; i < el.length(); i++) {
@@ -59,13 +59,15 @@ const AllCourse = () => {
 
             const playlistDetails = await Promise.all(
                 data.map(async (el: any) => {
-                    const playlistId = Number(el._hex);
+                    const playlistId = Number(el);
                     const playlistData = await contract.allPlaylistData(playlistId);
                     return playlistData;
                 })
             );
             // console.log(playlistDetails);
             setLoginData(playlistDetails)
+            // console.log(loginData);
+
             // });
 
             // const realNumber = parseInt(storeAsString, 16)
@@ -133,9 +135,10 @@ const AllCourse = () => {
                                     </form>
                                 </CardContent>
                                 <CardFooter className="flex justify-between">
-                                    <Button variant="outline">Cancel</Button>
+                                    <Button variant="outline">Click</Button>
                                     <Button>
-                                        <div>{Number(el[4]._hex)}</div>
+                                        <DollarSign size={17} />
+                                        <div>{Number(el[4])}</div>
                                     </Button>
                                 </CardFooter>
                             </Link>

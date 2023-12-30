@@ -20,7 +20,7 @@ const DetailedProduct = ({ param }: DetailData) => {
     const clickToBuy = async () => {
         try {
             const contract = await createContractObject()
-            await contract.buyPlaylist(param);
+            const data = await contract.buyPlaylist(param);
             // console.log(data);
         } catch (error) {
             console.log(error);
