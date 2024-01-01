@@ -17,7 +17,7 @@ import { publicProvider } from "wagmi/providers/public";
 const projectId = process.env.NEXT_PUBLIC_PROJECT_ID as string;
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
-    [polygonMumbai, sepolia, lineaTestnet],
+    [sepolia],
     [publicProvider()]
 );
 

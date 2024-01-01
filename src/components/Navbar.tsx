@@ -60,7 +60,10 @@ const Navbar = () => {
           ) : (
             <div>{
               loginData === 1 ? (
-                <div>
+                <div className='space-x-4'>
+                  <Link href="/CreateProduct">
+                    Create Product
+                  </Link>
                   <Link href="/Teacher">
                     Profile
                   </Link>
