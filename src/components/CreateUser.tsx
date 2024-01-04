@@ -75,10 +75,10 @@ const CreateUser = () => {
               <div className="grid w-full items-center gap-4">
                 <div className="flex flex-col space-y-1.5">
                   <Label htmlFor="email">Name</Label>
-                  <Input type="email" id="email" placeholder="Email" className='rounded-xl   border border-gray-300 shadow-lg' value={nameData} onChange={(e) => setNameData(e.target.value)} />
+                  <Input type="email" id="email" placeholder="Name" className='rounded-xl   border border-gray-300 shadow-lg' value={nameData} onChange={(e) => setNameData(e.target.value)} />
                 </div>
                 <div className="flex flex-col space-y-1.5">
-                  <Label htmlFor="framework">Framework</Label>
+                  <Label htmlFor="framework">Select</Label>
                   <Select onValueChange={handleValueChange}
                     value={studentData}>
                     <SelectTrigger className='rounded-xl   border border-gray-300 shadow-lg' >
