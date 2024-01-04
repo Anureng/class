@@ -2,12 +2,19 @@
 import { createContractObject } from '@/app/Contract/ContractDetails';
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
+import { doc, setDoc } from 'firebase/firestore';
+import { fireStore } from '../../firebase.config';
+import { useAccount } from 'wagmi'
+
 interface DetailData {
     param: string;
 }
 const DetailedProduct = ({ param }: DetailData) => {
 
+    const { address, isConnecting, isDisconnected } = useAccount()
+
     const [contractData, setContractData] = useState([])
+    const [idCount, setIdCount] = useState(0)
 
 
     const getDataFromContract = async () => {
@@ -22,6 +29,18 @@ const DetailedProduct = ({ param }: DetailData) => {
             const contract = await createContractObject()
             const data = await contract.buyPlaylist(param);
             // console.log(data);
+            setIdCount(idCount + 1)
+            if (data) {
+                try {
+                    await setDoc(doc(fireStore, "Student", `${idCount}`), {
+                        address: address,
+                        productId: param
+                    });
+                    console.log('Data added to Firestore successfully!');
+                } catch (error) {
+                    console.error('Error adding data to Firestore: ', error);
+                }
+            }
         } catch (error) {
             console.log(error);
         }
@@ -60,7 +79,6 @@ const DetailedProduct = ({ param }: DetailData) => {
                 </div>
             </div>
         </div>
-
     )
 }
 
