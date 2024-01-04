@@ -15,7 +15,7 @@ export async function createContractObject() {
 
   // create the contract object using the ABI and contract address
   const contract = new ethers.Contract(
-    '0x36227C70601bb1F345FEf929AD235Eb919eb4fC6',
+    '0x53C090A70B2f220861fBD4BE7F01d9Fbf50317F3',
     abi,
     signer,
   )
