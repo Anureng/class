@@ -1,6 +1,6 @@
 "use client"
 import { createContractObject } from '@/app/Contract/ContractDetails';
-import React, { useEffect, useState } from 'react'
+import React, { ChangeEvent, useEffect, useState } from 'react'
 import Image from 'next/image'
 import { doc, setDoc } from 'firebase/firestore';
 import { fireStore } from '../../firebase.config';
@@ -10,6 +10,9 @@ interface DetailData {
     param: string;
 }
 const DetailedProduct = ({ param }: DetailData) => {
+
+    const [description, setDescription] = useState('')
+    const [rating, setRating] = useState(0)
 
     const { address, isConnecting, isDisconnected } = useAccount()
 
@@ -46,8 +49,33 @@ const DetailedProduct = ({ param }: DetailData) => {
         }
 
     }
+
+    const allCommentData = async () => {
+        const contractInstance = await createContractObject()
+        const data = await contractInstance.allCommentsData(param)
+        // setContractData(data)
+    }
+
+
+    const addComment = async () => {
+        try {
+            const contractInstance = await createContractObject()
+            const data = await contractInstance.createComment(parseFloat(param), description, rating)
+            console.log(data);
+            alert("Comment Successfully Added")
+        } catch (error) {
+            console.log(error);
+            alert(error)
+        }
+    }
+
+    const convertData = (event: ChangeEvent<HTMLInputElement>) => {
+        const data = event.target.value;
+        const convert = parseFloat(data)
+    }
     useEffect(() => {
         getDataFromContract()
+        allCommentData()
     })
     return (
         <div>
@@ -60,11 +88,10 @@ const DetailedProduct = ({ param }: DetailData) => {
                 <div className='space-y-9'>
                     <h1 className='text-3xl font-semibold'>{contractData[0]}</h1>
                     <p className='font-light'>{contractData[1]}</p>
-
                     {/* <label htmlFor="Price" className='text-2xl font-bold'>Price  </label> */}
                     <p className='text-xl font-semi-bold'>${Number(contractData[4])}</p>
                     <div className=''>
-                        <label htmlFor="Author" className='text-2xl font-bold'>Author  </label>
+                        <label htmlFor="Author" className='text-2xl font-bold'>Category  </label>
                         <p className='font-light'>{contractData[2]}</p>
                     </div>
                     {/* <div>
@@ -75,9 +102,13 @@ const DetailedProduct = ({ param }: DetailData) => {
                         <p className='text-2xl font-bold'>Category</p>
                         <p className='font-light'>{savedData?.category}</p>
                     </div> */}
-                    <button onClick={clickToBuy} className='border border-black w-fit px-8 rounded-lg bg-black text-white h-8'>Add to cart</button>
+                    <button onClick={clickToBuy} className='border border-black w-fit px-8 rounded-lg bg-black text-white h-8'>Buy</button>
                 </div>
             </div>
+
+            <input type="text" placeholder='description' onChange={(e) => setDescription(e.target.value)} />
+            <input type="number" placeholder='rating' onChange={convertData} />
+            <button onClick={addComment}>Click TO Comment</button>
         </div>
     )
 }
